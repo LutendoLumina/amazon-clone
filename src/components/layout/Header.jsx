@@ -29,8 +29,7 @@ const Header = () => {
       </div>
 
       <div className="header_nav">
-
-        <Link to={!user && "/login"}>
+        <Link to={!user ? "/login" : null}>
           <div className="header_option" onClick={handleAuthentication}>
             <span className="header_optionOne">
               Hello {!user ? "Guest" : user.email}
@@ -51,12 +50,14 @@ const Header = () => {
           <span className="header_optionTwo">Prime</span>
         </div>
 
-        <div className="header_optionBasket">
-          <ShoppingBasket />
-          <span className="header_optionTwo header_basketCount">
-            {basket?.length}
-          </span>
-        </div>
+        <Link to="/checkout">
+          <div className="header_optionBasket">
+            <ShoppingBasket />
+            <span className="header_optionTwo header_basketCount">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </header>
   );

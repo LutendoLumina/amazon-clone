@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/amazon-logo.png";
 import "./Login.css";
 import { auth } from "../firebase";
@@ -8,14 +8,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const signIn = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        history.push("/");
+        navigate("/");
       })
       .catch((error) => alert(error.message));
   };
@@ -26,7 +26,7 @@ const Login = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
-          history.push("/");
+          navigate("/");
         }
       })
       .catch((error) => alert(error.message));

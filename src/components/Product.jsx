@@ -7,7 +7,7 @@ const Product = ({ id, image, title, rating, price }) => {
   const { addToBasket } = shoppingContext;
 
   const addToBasketHandler = () => {
-    addToBasket({ item: { id, image, title, rating, price } });
+    addToBasket({ id, image, title, rating, price });
   };
 
   return (
@@ -20,11 +20,11 @@ const Product = ({ id, image, title, rating, price }) => {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p>⭐</p>
+              <p key={i}>⭐</p>
             ))}
         </div>
 
-        <p className="product_price">{price}</p>
+        <p className="product_price"><small>R</small><strong>{price}</strong></p>
       </div>
 
       <button className="product_button" onClick={addToBasketHandler}>
