@@ -10,8 +10,9 @@ import NotFound from "./components/NotFound";
 import { auth } from "./firebase";
 import ShoppingContext from "./contexts/shopping/shoppingContext";
 import CheckoutProduct from "./components/CheckoutProduct";
-import SubTotal from "./components/SubTotal";
 import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
+import StripeWrapper from "./components/StripeWrapper";
 
 const App = () => {
   const location = useLocation();
@@ -43,7 +44,14 @@ const App = () => {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/checkout_product" element={<CheckoutProduct />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/subtotal" element={<SubTotal />} />
+          <Route
+            path="/payment"
+            element={
+              <StripeWrapper>
+                <Payment />
+              </StripeWrapper>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
